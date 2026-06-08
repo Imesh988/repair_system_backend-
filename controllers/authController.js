@@ -10,23 +10,29 @@ const generateToken = (id) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log('🔵 Login attempt:', email);
+
     const employee = await Employee.findByEmail(email);
+    console.log('📦 Employee found:', employee ? 'Yes' : 'No');
 
     if (!employee) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
+    console.log('👤 Employee status:', employee.status);
     if (employee.status !== 'active') {
       return res.status(401).json({ message: 'Account is inactive. Please contact admin.' });
     }
 
+    console.log('🔐 Validating password...');
     const isPasswordValid = await Employee.validatePassword(password, employee.password_hash);
+    console.log('✅ Password valid:', isPasswordValid);
+
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
     const token = generateToken(employee.employee_id);
-
     res.json({
       token,
       user: {
@@ -37,7 +43,7 @@ const login = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error(error);
+    console.error('💥 Login error:', error);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
