@@ -18,30 +18,16 @@ app.get('/api/health', (req, res) => {
 });
 
 const authRoutes = require('./routes/authRoutes');
-const deviceRoutes = require('./routes/deviceRoutes');
-const repairRoutes = require('./routes/repairRoutes');
 const inventoryRoutes = require('./routes/inventoryRoutes');
-const paymentRoutes = require('./routes/paymentRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
 const supplierRoutes = require('./routes/supplierRoutes');
-const dashboardRoutes = require('./routes/dashboardRoutes');
-const reportRoutes = require('./routes/reportRoutes');
-const warrantyRoutes = require('./routes/warrantyRoutes');
-const discountRoutes = require('./routes/discountRoutes');
 const expenseRoutes = require('./routes/expenseRoutes');
 const repairJobsRoutes = require('./routes/repairJobs');
 
 app.use('/api/auth', authRoutes);
-app.use('/api/devices', deviceRoutes);
-app.use('/api/repairs', repairRoutes);
 app.use('/api/inventory', inventoryRoutes);
-app.use('/api/payments', paymentRoutes);
 app.use('/api/employees', employeeRoutes);
 app.use('/api/suppliers', supplierRoutes);
-app.use('/api/dashboard', dashboardRoutes);
-app.use('/api/reports', reportRoutes);
-app.use('/api/warranties', warrantyRoutes);
-app.use('/api/discounts', discountRoutes);
 app.use('/api/expenses', expenseRoutes);
 app.use('/api/repair-jobs', repairJobsRoutes);
 
